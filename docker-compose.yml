@@ -1,0 +1,68 @@
+version: '3.8'
+
+services:
+  # Servicio de MySQL
+  mysql:
+    image: mysql:8.0
+    container_name: app_tareas_db
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: app_tareas
+      MYSQL_USER: usuario
+      MYSQL_PASSWORD: contraseña123
+    ports:
+      - "3306:3306"
+    volumes:
+      - mysql_data:/var/lib/mysql
+      - ./config/init_database.sql:/docker-entrypoint-initdb.d/init.sql
+    networks:
+      - app_network
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost"]
+      timeout: 20s
+      retries: 10
+
+  # Servicio de PHP Apache
+  php:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: app_tareas_web
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - .:/var/www/html
+      - ./public:/var/www/html/public
+    environment:
+      - DB_HOST=mysql
+      - DB_USER=usuario
+      - DB_PASS=contraseña123
+      - DB_NAME=app_tareas
+    depends_on:
+      mysql:
+        condition: service_healthy
+    networks:
+      - app_network
+
+  # PhpMyAdmin (Opcional)
+  phpmyadmin:
+    image: phpmyadmin:latest
+    container_name: app_tareas_phpmyadmin
+    ports:
+      - "8080:80"
+    environment:
+      PMA_HOST: mysql
+      PMA_USER: usuario
+      PMA_PASSWORD: contraseña123
+    depends_on:
+      - mysql
+    networks:
+      - app_network
+
+volumes:
+  mysql_data:
+
+networks:
+  app_network:
+    driver: bridge

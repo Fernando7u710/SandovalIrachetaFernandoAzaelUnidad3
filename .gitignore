@@ -1,0 +1,45 @@
+# Archivos a ignorar en Git
+
+# Sistema operativo
+.DS_Store
+Thumbs.db
+*.log
+
+# Configuración local
+.env
+.env.local
+.env.*.local
+
+# Dependencias y caché
+vendor/
+node_modules/
+.cache/
+/tmp/
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+.project
+.settings/
+
+# Aplicación
+config/config.php
+logs/*.log
+uploads/*
+!uploads/.gitkeep
+
+# Base de datos
+*.sql.bak
+.mysql_history
+
+# Sesiones PHP
+sessions/*
+!sessions/.gitkeep
+
+# Archivos temporales
+*.tmp
+*.temp
+*.bak

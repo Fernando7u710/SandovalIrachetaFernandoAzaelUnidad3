@@ -1,0 +1,46 @@
+<IfModule mod_rewrite.c>
+    RewriteEngine On
+    RewriteBase /
+    
+    # Reescribir URLs amigables
+    RewriteCond %{REQUEST_FILENAME} !-f
+    RewriteCond %{REQUEST_FILENAME} !-d
+    RewriteRule ^api/(.*)$ api.php/$1 [QSA,L]
+    
+    # Proteger archivos sensibles
+    RewriteRule ^config/ - [F]
+    RewriteRule ^src/ - [F]
+    RewriteRule ^logs/ - [F]
+</IfModule>
+
+<IfModule mod_headers.c>
+    # Encabezados de seguridad
+    Header set X-Content-Type-Options "nosniff"
+    Header set X-Frame-Options "SAMEORIGIN"
+    Header set X-XSS-Protection "1; mode=block"
+    Header set Referrer-Policy "strict-origin-when-cross-origin"
+    
+    # CORS para APIs
+    Header set Access-Control-Allow-Origin "http://localhost"
+    Header set Access-Control-Allow-Methods "GET, POST, PUT, DELETE, OPTIONS"
+    Header set Access-Control-Allow-Headers "Content-Type, Authorization"
+</IfModule>
+
+# Proteger archivos de configuración
+<FilesMatch "\.(env|sql|config)$">
+    Order allow,deny
+    Deny from all
+</FilesMatch>
+
+# Comprimir contenido
+<IfModule mod_deflate.c>
+    AddOutputFilterByType DEFLATE text/html text/plain text/xml text/css text/javascript application/javascript application/json
+</IfModule>
+
+# Cache del navegador
+<IfModule mod_expires.c>
+    ExpiresActive On
+    ExpiresByType text/css "access plus 1 month"
+    ExpiresByType application/javascript "access plus 1 month"
+    ExpiresByType image/ "access plus 1 month"
+</IfModule>
