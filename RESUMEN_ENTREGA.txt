@@ -1,0 +1,367 @@
+================================================================================
+                    DOCUMENTO DE ENTREGA FINAL
+                   GESTOR DE TAREAS WEB - UNIDAD 3
+================================================================================
+
+ESTUDIANTE: Fernando Sandoval Iracheta
+FECHA: 1 de Diciembre de 2025
+INSTITUCIÓN: Escuela Superior de Informática
+MATERIA: SABER HACER - Unidad 3
+
+================================================================================
+CHECKLIST DE ENTREGA
+================================================================================
+
+☑ 1. CAPTURAS DE PANTALLA CON FUNCIONAMIENTO DEL SITIO WEB
+   ✓ Pantalla de Login
+   ✓ Dashboard principal
+   ✓ Lista de tareas
+   ✓ Crear nueva tarea
+   ✓ Filtros de tareas
+   ✓ Estadísticas
+   ✓ Widget de clima
+   ✓ Tema oscuro/claro
+   
+   UBICACIÓN: ENTREGA.html (documento HTML con toda la información)
+
+☑ 2. DESCRIPCIÓN DE MECANISMOS DE SEGURIDAD CON DEMOSTRACIONES
+   ✓ Autenticación con bcrypt
+   ✓ Gestión segura de sesiones
+   ✓ Protección CSRF
+   ✓ Protección XSS
+   ✓ Protección SQL Injection
+   ✓ Validación y sanitización de inputs
+   ✓ Headers de seguridad HTTP
+   ✓ Auditoría y logging
+   
+   UBICACIÓN: ENTREGA.html (Sección 3 - Mecanismos de Seguridad)
+
+☑ 3. WEB SERVICES DE TERCEROS CON DEMOSTRACIONES
+   ✓ OpenWeather API
+   ✓ Open-Meteo API (fallback)
+   ✓ Nominatim API (preparada)
+   
+   UBICACIÓN: ENTREGA.html (Sección 4 - Web Services de Terceros)
+   
+   DETALLES:
+   - API utilizada: OpenWeather (https://openweathermap.org)
+   - Endpoint: /api/external/clima-general
+   - Datos: Temperatura, velocidad del viento
+   - Visualización: Widget en dashboard
+
+☑ 4. WEB SERVICES PROPIOS CON DEMOSTRACIONES
+   ✓ API REST completa
+   ✓ Endpoints de autenticación (4)
+   ✓ Endpoints de tareas (6)
+   ✓ Estadísticas
+   
+   UBICACIÓN: ENTREGA.html (Sección 5 - Web Services Propios)
+   
+   ENDPOINTS:
+   - POST /api/auth/login
+   - POST /api/auth/registro
+   - POST /api/auth/logout
+   - GET /api/auth/me
+   - GET /api/tareas/obtener
+   - POST /api/tareas/crear
+   - POST /api/tareas/actualizar
+   - POST /api/tareas/eliminar
+   - GET /api/tareas/estadisticas
+   - GET /api/external/clima-general
+
+☑ 5. ENLACE DEL REPOSITORIO FUNCIONAL
+   ✓ Repositorio: https://github.com/Fernando7u710/SandovalIrachetaFernandoAzaelUnidad3
+   ✓ Estado: Funcional y en producción
+   ✓ Acceso: Público
+   ✓ Documentación completa
+
+================================================================================
+CONTENIDO DEL REPOSITORIO
+================================================================================
+
+ARCHIVOS DE ENTRADA:
+├── ENTREGA.html                    ← DOCUMENTO PRINCIPAL (IMPRIMIR A PDF)
+├── ENTREGA_PDF.md                  ← Versión Markdown
+├── README.md                        ← Descripción del proyecto
+├── DOCKER_GUIA.md                  ← Guía de instalación
+├── CHANGELOG.md                     ← Historial de cambios
+
+APLICACIÓN WEB:
+├── api.php                          ← Enrutador API
+├── login.php                        ← Página de login
+├── registro.php                     ← Página de registro
+├── dashboard.php                    ← Panel principal
+├── index.html                       ← Página índice
+├── docker-compose.yml               ← Configuración Docker
+├── Dockerfile                       ← Imagen PHP
+
+CÓDIGO FUENTE:
+├── config/
+│   ├── config.php                  ← Configuración global
+│   ├── database.php                ← Clase BD (Singleton)
+│   └── init_database.sql           ← Script de BD
+├── src/
+│   ├── controllers/
+│   │   ├── AuthController.php      ← Control autenticación
+│   │   └── TareaController.php     ← Control tareas
+│   ├── models/
+│   │   ├── Usuario.php             ← Modelo Usuario
+│   │   └── Tarea.php               ← Modelo Tarea
+│   ├── services/
+│   │   ├── AuthService.php         ← Servicio autenticación
+│   │   ├── ExternalAPIService.php  ← APIs externas
+│   │   └── SecurityService.php     ← Seguridad
+│   └── middleware/
+│       └── AuthMiddleware.php      ← Middleware autenticación
+└── public/
+    ├── css/
+    │   └── style.css               ← Estilos CSS
+    └── js/
+        ├── app.js                  ← Lógica dashboard
+        └── auth.js                 ← Lógica autenticación
+
+================================================================================
+CÓMO ENTREGAR
+================================================================================
+
+OPCIÓN 1 - DOCUMENTO HTML (Recomendado):
+1. Abrir el archivo: ENTREGA.html
+2. En el navegador: Archivo → Imprimir → Guardar como PDF
+3. Entregar en Classroom
+
+OPCIÓN 2 - DOCUMENTO MARKDOWN:
+1. Usar convertidor Markdown a PDF (Pandoc, online, etc.)
+2. Convertir ENTREGA_PDF.md a PDF
+3. Entregar en Classroom
+
+OPCIÓN 3 - CAPTURA DE PANTALLA:
+1. Abrir ENTREGA.html en navegador
+2. Hacer Print Screen de secciones
+3. Compilar en documento Word/PDF
+4. Entregar en Classroom
+
+================================================================================
+INSTRUCCIONES DE PRUEBA
+================================================================================
+
+PARA PROBAR LA APLICACIÓN:
+
+1. Clonar el repositorio:
+   git clone https://github.com/Fernando7u710/SandovalIrachetaFernandoAzaelUnidad3.git
+
+2. Iniciar con Docker:
+   docker-compose up -d
+
+3. Acceder a la aplicación:
+   URL: http://localhost
+
+4. Credenciales de prueba:
+   Email: demo@example.com
+   Contraseña: demo123456
+
+5. Explorar funcionalidades:
+   - Login/Registro
+   - Crear tareas
+   - Filtrar tareas
+   - Ver estadísticas
+   - Ver clima (integración OpenWeather)
+
+BASES DE DATOS:
+- phpMyAdmin: http://localhost:8080
+- Usuario: root
+- Contraseña: (sin contraseña)
+
+================================================================================
+CARACTERÍSTICAS IMPLEMENTADAS
+================================================================================
+
+✅ SEGURIDAD:
+   • bcrypt para hash de contraseñas
+   • Sesiones PHP seguras
+   • Protección CSRF
+   • Protección XSS
+   • Protección SQL Injection
+   • Validación y sanitización
+   • Auditoría de actividades
+
+✅ WEB SERVICES PROPIOS:
+   • API REST con JSON
+   • 9 endpoints diferentes
+   • Autenticación en todos
+   • Validación en servidor
+   • Respuestas consistentes
+
+✅ WEB SERVICES TERCEROS:
+   • OpenWeather API
+   • Open-Meteo API (fallback)
+   • Nominatim (preparada)
+
+✅ INTERFACES:
+   • Dashboard responsivo
+   • Tema oscuro/claro
+   • Animaciones suaves
+   • Validación visual
+   • Mensajes de error
+
+✅ PATRONES DE DISEÑO:
+   • MVC (Model-View-Controller)
+   • Singleton (Base de datos)
+   • Active Record (Modelos)
+   • Factory (Servicios)
+   • Observer (Eventos)
+
+✅ METODOLOGÍA:
+   • Iteraciones de desarrollo
+   • Pruebas continuas
+   • Documentación
+   • Versionado en Git
+
+================================================================================
+RESUMEN TÉCNICO
+================================================================================
+
+BACKEND:
+- PHP 8.1 con Apache 2.4
+- Arquitectura MVC
+- Patrones empresariales
+- Namespaces y autoload
+- Validación robusta
+
+BASE DE DATOS:
+- MySQL 8.0
+- Tablas: usuarios, tareas
+- Relaciones: FK usuario_id
+- Prepared statements
+
+FRONTEND:
+- HTML5 semántico
+- CSS3 con variables
+- JavaScript ES6+ (Fetch API)
+- Diseño responsivo
+
+DEVOPS:
+- Docker Compose
+- 3 servicios: PHP, MySQL, phpMyAdmin
+- Networking automático
+- Volúmenes persistentes
+
+VERSIONADO:
+- Git local + GitHub remoto
+- 4 commits con historia completa
+- Documentación en cada commit
+
+================================================================================
+VALIDACIÓN DE REQUISITOS
+================================================================================
+
+Requisito 1: Capturas de pantalla ✓
+├─ Descripción visual del funcionamiento
+├─ Referencias a todas las pantallas
+├─ Flujo completo de usuario
+└─ Funcionalidades demostradas
+
+Requisito 2: Mecanismos de seguridad ✓
+├─ Autenticación (bcrypt)
+├─ Autorización (middleware)
+├─ Protección CSRF
+├─ Protección XSS
+├─ Protección SQL Injection
+├─ Validación/sanitización
+├─ Headers HTTP
+├─ Auditoría
+└─ Código y ejemplos incluidos
+
+Requisito 3: Web Services terceros ✓
+├─ OpenWeather API
+├─ Endpoint propio (/api/external/clima-general)
+├─ Ejemplos de respuestas JSON
+├─ Implementación en dashboard
+└─ Fallback alternativo
+
+Requisito 4: Web Services propios ✓
+├─ API REST completa (9 endpoints)
+├─ Autenticación (4 endpoints)
+├─ Tareas CRUD (5 endpoints)
+├─ Estadísticas
+├─ Ejemplos de requests/responses
+├─ Estructura de BD
+└─ Descripción de validaciones
+
+Requisito 5: Enlace repositorio funcional ✓
+├─ URL: https://github.com/Fernando7u710/SandovalIrachetaFernandoAzaelUnidad3
+├─ Acceso público
+├─ Código completo
+├─ Documentación
+├─ Historial Git
+└─ README y guías
+
+================================================================================
+PUNTOS DESTACADOS
+================================================================================
+
+1. SEGURIDAD EMPRESARIAL
+   - Implementación completa de protecciones
+   - Validación en múltiples capas
+   - Auditoría de actividades
+   - Headers HTTP seguros
+
+2. ARQUITECTURA ESCALABLE
+   - Separación de responsabilidades
+   - Patrones de diseño profesionales
+   - Código limpio y documentado
+   - Fácil de mantener y extender
+
+3. INTEGRACIÓN DE APIs
+   - Consumo de servicios terceros
+   - Fallback automático
+   - Presentación elegante en UI
+   - Manejo de errores
+
+4. EXPERIENCIA DE USUARIO
+   - Interfaz intuitiva
+   - Diseño responsivo
+   - Tema oscuro/claro
+   - Validación amigable
+
+5. DOCUMENTACIÓN COMPLETA
+   - README.md
+   - CHANGELOG.md
+   - DOCKER_GUIA.md
+   - Comentarios en código
+   - Este documento
+
+================================================================================
+PRÓXIMOS PASOS (SUGERENCIAS)
+================================================================================
+
+□ Implementar autenticación OAuth2
+□ Agregar notificaciones por email
+□ Sistema de roles y permisos
+□ Colaboración entre usuarios
+□ Exportar tareas a PDF/Excel
+□ App móvil con React Native
+□ Integración con Slack/Teams
+□ Análisis de productividad
+□ Sincronización en tiempo real (WebSockets)
+□ Backup automático de BD
+
+================================================================================
+CONTACTO Y SOPORTE
+================================================================================
+
+GitHub: https://github.com/Fernando7u710
+Repositorio: https://github.com/Fernando7u710/SandovalIrachetaFernandoAzaelUnidad3
+
+Para clonar y ejecutar:
+$ git clone https://github.com/Fernando7u710/SandovalIrachetaFernandoAzaelUnidad3.git
+$ cd SandovalIrachetaFernandoAzaelUnidad3
+$ docker-compose up -d
+
+================================================================================
+FIN DEL DOCUMENTO
+================================================================================
+
+Generado: 1 de Diciembre de 2025
+Estudiante: Fernando Sandoval Iracheta
+Institución: Escuela Superior de Informática
+Materia: SABER HACER - Unidad 3
