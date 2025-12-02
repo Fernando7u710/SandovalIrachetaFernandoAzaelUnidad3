@@ -1,0 +1,899 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Entrega Proyecto - Gestor de Tareas Web</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background-color: #f5f5f5;
+        }
+        
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            background-color: white;
+            padding: 40px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
+        
+        /* PORTADA */
+        .portada {
+            page-break-after: always;
+            text-align: center;
+            padding: 100px 40px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+        }
+        
+        .portada h1 {
+            font-size: 48px;
+            margin-bottom: 20px;
+            font-weight: bold;
+        }
+        
+        .portada h2 {
+            font-size: 32px;
+            margin-bottom: 40px;
+            font-weight: 300;
+        }
+        
+        .portada-info {
+            margin-top: 60px;
+            font-size: 16px;
+            line-height: 2;
+        }
+        
+        .portada-info p {
+            margin: 10px 0;
+        }
+        
+        /* SECCIONES */
+        .seccion {
+            page-break-before: always;
+            margin-top: 40px;
+        }
+        
+        h1 {
+            color: #667eea;
+            font-size: 36px;
+            margin-bottom: 20px;
+            border-bottom: 3px solid #667eea;
+            padding-bottom: 10px;
+        }
+        
+        h2 {
+            color: #764ba2;
+            font-size: 28px;
+            margin-top: 30px;
+            margin-bottom: 15px;
+        }
+        
+        h3 {
+            color: #667eea;
+            font-size: 22px;
+            margin-top: 20px;
+            margin-bottom: 10px;
+        }
+        
+        p {
+            margin-bottom: 12px;
+            text-align: justify;
+        }
+        
+        ul, ol {
+            margin-left: 30px;
+            margin-bottom: 15px;
+        }
+        
+        li {
+            margin-bottom: 8px;
+        }
+        
+        /* TABLAS */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+            background-color: #f9f9f9;
+        }
+        
+        table th {
+            background-color: #667eea;
+            color: white;
+            padding: 12px;
+            text-align: left;
+            font-weight: bold;
+        }
+        
+        table td {
+            padding: 12px;
+            border-bottom: 1px solid #ddd;
+        }
+        
+        table tr:hover {
+            background-color: #f0f0f0;
+        }
+        
+        /* CÓDIGO */
+        code {
+            background-color: #f4f4f4;
+            padding: 2px 6px;
+            border-radius: 3px;
+            font-family: 'Courier New', monospace;
+            color: #d63384;
+        }
+        
+        pre {
+            background-color: #282c34;
+            color: #abb2bf;
+            padding: 15px;
+            border-radius: 5px;
+            overflow-x: auto;
+            margin: 15px 0;
+            font-family: 'Courier New', monospace;
+            font-size: 13px;
+            line-height: 1.5;
+        }
+        
+        /* CAJAS DE DESTACADO */
+        .box {
+            border-left: 5px solid #667eea;
+            background-color: #f0f4ff;
+            padding: 15px;
+            margin: 20px 0;
+            border-radius: 3px;
+        }
+        
+        .box strong {
+            color: #667eea;
+        }
+        
+        /* LISTAS DE VERIFICACIÓN */
+        .checklist {
+            list-style: none;
+        }
+        
+        .checklist li:before {
+            content: "✓ ";
+            color: #28a745;
+            font-weight: bold;
+            margin-right: 10px;
+        }
+        
+        /* ENLACE */
+        a {
+            color: #667eea;
+            text-decoration: none;
+        }
+        
+        a:hover {
+            text-decoration: underline;
+        }
+        
+        /* ÍNDICE */
+        .indice {
+            background-color: #f9f9f9;
+            padding: 20px;
+            border-radius: 5px;
+            margin: 20px 0;
+        }
+        
+        .indice ol {
+            margin-left: 20px;
+        }
+        
+        /* TECNOLOGÍAS */
+        .tech-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 15px;
+            margin: 20px 0;
+        }
+        
+        .tech-item {
+            background-color: #f0f4ff;
+            padding: 15px;
+            border-radius: 5px;
+            border-left: 4px solid #667eea;
+        }
+        
+        .tech-item strong {
+            color: #667eea;
+            display: block;
+            margin-bottom: 5px;
+        }
+        
+        /* PIE DE PÁGINA */
+        .footer {
+            margin-top: 40px;
+            padding-top: 20px;
+            border-top: 2px solid #ddd;
+            text-align: center;
+            color: #666;
+            font-size: 14px;
+        }
+        
+        .emoji {
+            margin-right: 5px;
+        }
+        
+        @media print {
+            body {
+                background-color: white;
+            }
+            
+            .container {
+                box-shadow: none;
+                padding: 0;
+            }
+            
+            .seccion {
+                page-break-before: always;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- PORTADA -->
+        <div class="portada">
+            <h1>🎯 GESTOR DE TAREAS WEB</h1>
+            <h2>Sistema de Gestión Empresarial con Seguridad Avanzada</h2>
+            
+            <div class="portada-info">
+                <p><strong>INSTITUCIÓN:</strong> Escuela Superior de Informática</p>
+                <p><strong>MATERIA:</strong> SABER HACER - Unidad 3</p>
+                <p><strong>ESTUDIANTE:</strong> Fernando Sandoval Iracheta</p>
+                <p><strong>FECHA:</strong> 1 de Diciembre de 2025</p>
+                <p style="margin-top: 40px;">
+                    <strong>REPOSITORIO:</strong><br>
+                    <a href="https://github.com/Fernando7u710/SandovalIrachetaFernandoAzaelUnidad3" target="_blank">
+                        https://github.com/Fernando7u710/SandovalIrachetaFernandoAzaelUnidad3
+                    </a>
+                </p>
+            </div>
+        </div>
+        
+        <!-- TABLA DE CONTENIDOS -->
+        <div class="seccion">
+            <h1>📑 Tabla de Contenidos</h1>
+            <div class="indice">
+                <ol>
+                    <li>Descripción General</li>
+                    <li>Funcionamiento del Sitio Web</li>
+                    <li>Mecanismos de Seguridad Empleados</li>
+                    <li>Web Services de Terceros</li>
+                    <li>Web Services Propios</li>
+                    <li>Conclusiones</li>
+                    <li>Anexos</li>
+                </ol>
+            </div>
+        </div>
+        
+        <!-- SECCIÓN 1 -->
+        <div class="seccion">
+            <h1>1️⃣ Descripción General</h1>
+            
+            <h2>1.1 Objetivo del Proyecto</h2>
+            <p>Desarrollar una aplicación web profesional de gestión de tareas que implemente seguridad empresarial, Web Services propios y de terceros, patrones de diseño, y metodología ágil.</p>
+            
+            <ul class="checklist">
+                <li>Autenticación y autorización segura</li>
+                <li>Web Services propios (API REST)</li>
+                <li>Integración con Web Services de terceros</li>
+                <li>Patrones de diseño empresariales</li>
+                <li>Metodología ágil</li>
+                <li>Arquitectura escalable</li>
+            </ul>
+            
+            <h2>1.2 Tecnologías Utilizadas</h2>
+            <table>
+                <tr>
+                    <th>Componente</th>
+                    <th>Tecnología</th>
+                </tr>
+                <tr>
+                    <td>Backend</td>
+                    <td>PHP 8.1 con Apache 2.4</td>
+                </tr>
+                <tr>
+                    <td>Base de Datos</td>
+                    <td>MySQL 8.0</td>
+                </tr>
+                <tr>
+                    <td>Frontend</td>
+                    <td>HTML5, CSS3, JavaScript ES6+</td>
+                </tr>
+                <tr>
+                    <td>Contenedorización</td>
+                    <td>Docker & Docker Compose</td>
+                </tr>
+                <tr>
+                    <td>API Propias</td>
+                    <td>REST JSON</td>
+                </tr>
+                <tr>
+                    <td>Seguridad</td>
+                    <td>bcrypt, JWT, CSRF, Sessions</td>
+                </tr>
+            </table>
+            
+            <h2>1.3 Características Principales</h2>
+            <ul class="checklist">
+                <li>Sistema completo de autenticación</li>
+                <li>Gestión CRUD de tareas</li>
+                <li>Dashboard responsivo</li>
+                <li>Tema oscuro/claro</li>
+                <li>Validación de seguridad</li>
+                <li>Auditoría de actividades</li>
+                <li>Integración con APIs externas</li>
+                <li>Optimización de rendimiento</li>
+            </ul>
+        </div>
+        
+        <!-- SECCIÓN 2 -->
+        <div class="seccion">
+            <h1>2️⃣ Funcionamiento del Sitio Web</h1>
+            
+            <h2>2.1 Flujo de Uso</h2>
+            
+            <h3>Paso 1: Acceso a la Aplicación</h3>
+            <ul>
+                <li><strong>URL:</strong> http://localhost</li>
+                <li><strong>Acción:</strong> El usuario accede a la pantalla de login</li>
+            </ul>
+            
+            <h3>Paso 2: Autenticación</h3>
+            <div class="box">
+                <strong>Credenciales de Prueba:</strong><br>
+                Email: demo@example.com<br>
+                Contraseña: demo123456
+            </div>
+            
+            <p>Al hacer clic en "Iniciar Sesión", el sistema:</p>
+            <ol>
+                <li>Valida el email y contraseña</li>
+                <li>Verifica la contraseña contra el hash bcrypt</li>
+                <li>Crea una sesión segura</li>
+                <li>Regenera el ID de sesión</li>
+                <li>Redirige al dashboard</li>
+            </ol>
+            
+            <h3>Paso 3: Acceso al Dashboard</h3>
+            <p>Después de autenticarse exitosamente, el usuario accede a un panel completo donde puede:</p>
+            
+            <h4>a) Ver Tareas Existentes</h4>
+            <ul>
+                <li>Lista de todas las tareas del usuario</li>
+                <li>Información: título, descripción, estado, prioridad, fecha vencimiento</li>
+                <li>Estados: Pendiente, En Progreso, Completada</li>
+            </ul>
+            
+            <h4>b) Crear Nuevas Tareas</h4>
+            <ul>
+                <li>Formulario con validación client y server-side</li>
+                <li>Campos: título, descripción, prioridad, fecha vencimiento</li>
+                <li>Protección CSRF</li>
+            </ul>
+            
+            <h4>c) Filtrar Tareas</h4>
+            <ul>
+                <li>Todas las tareas</li>
+                <li>Tareas pendientes</li>
+                <li>Tareas en progreso</li>
+                <li>Tareas completadas</li>
+            </ul>
+            
+            <h4>d) Actualizar Estados</h4>
+            <ul>
+                <li>Cambiar de pendiente a en progreso</li>
+                <li>Cambiar a completada</li>
+                <li>Actualización en tiempo real</li>
+            </ul>
+            
+            <h4>e) Eliminar Tareas</h4>
+            <ul>
+                <li>Confirmación de seguridad</li>
+                <li>Eliminación permanente</li>
+            </ul>
+            
+            <h4>f) Ver Estadísticas</h4>
+            <ul>
+                <li>Total de tareas</li>
+                <li>Tareas por estado</li>
+                <li>Indicadores en tiempo real</li>
+            </ul>
+            
+            <h4>g) Ver Información del Clima</h4>
+            <ul>
+                <li>Temperatura actual</li>
+                <li>Velocidad del viento</li>
+                <li>Datos actualizados en tiempo real</li>
+            </ul>
+            
+            <h2>2.2 Interfaz Visual</h2>
+            
+            <h3>Componentes Principales:</h3>
+            <ul>
+                <li><strong>Barra Superior:</strong> Logo, botón logout, toggle tema</li>
+                <li><strong>Navegación Lateral:</strong> Filtros, estadísticas, clima</li>
+                <li><strong>Área Principal:</strong> Formulario y lista de tareas</li>
+                <li><strong>Diseño Responsivo:</strong> Desktop, tablet, móvil</li>
+            </ul>
+        </div>
+        
+        <!-- SECCIÓN 3 -->
+        <div class="seccion">
+            <h1>3️⃣ Mecanismos de Seguridad Empleados</h1>
+            
+            <h2>3.1 Autenticación</h2>
+            
+            <h3>3.1.1 Hash de Contraseñas con bcrypt</h3>
+            
+            <div class="box">
+                <strong>Algoritmo Utilizado:</strong> bcrypt (PASSWORD_BCRYPT)<br>
+                <strong>Costo Computacional:</strong> 10 iteraciones<br>
+                <strong>Características:</strong> Sal incluida automáticamente, irreversible
+            </div>
+            
+            <p><strong>Implementación:</strong></p>
+            <pre>// En AuthService.php
+$hash = password_hash($password, PASSWORD_BCRYPT);
+
+// Verificación
+if (password_verify($password, $hash)) {
+    // Contraseña correcta
+}</pre>
+            
+            <h3>3.1.2 Gestión de Sesiones</h3>
+            
+            <ul>
+                <li>Sesiones PHP con cookies seguras</li>
+                <li>Timeout de sesión: 30 minutos</li>
+                <li>Regeneración de ID de sesión</li>
+                <li>Validación en cada solicitud</li>
+                <li>Cookie PHPSESSID protegida</li>
+                <li>Datos almacenados en servidor</li>
+            </ul>
+            
+            <h3>3.1.3 Validación de Credenciales</h3>
+            
+            <p><strong>Proceso de Login:</strong></p>
+            <ol>
+                <li>Usuario ingresa email y contraseña</li>
+                <li>Se busca usuario en BD por email</li>
+                <li>Se verifica contraseña contra hash</li>
+                <li>Si es correcta → Crear sesión</li>
+                <li>Si es incorrecta → Error genérico</li>
+            </ol>
+            
+            <div class="box">
+                <strong>Protección:</strong> No se expone si el email existe o no, previniendo enumeración de usuarios
+            </div>
+            
+            <h2>3.2 Autorización</h2>
+            
+            <h3>3.2.1 Middleware de Autenticación</h3>
+            
+            <p>Todos los endpoints protegidos verifican autenticación:</p>
+            <pre>// En AuthMiddleware.php
+public static function verificar() {
+    if (!is_logged_in()) {
+        // Retorna 401 Unauthorized
+        header('HTTP/1.1 401 Unauthorized');
+        exit;
+    }
+}</pre>
+            
+            <h3>3.2.2 Control de Acceso a Recursos</h3>
+            
+            <ul>
+                <li>Usuario solo ve sus propias tareas</li>
+                <li>Usuario solo puede modificar sus propias tareas</li>
+                <li>Validación en servidor (no en cliente)</li>
+                <li>Imposible acceder a tareas de otros usuarios</li>
+            </ul>
+            
+            <h2>3.3 Protección Contra Ataques</h2>
+            
+            <h3>3.3.1 CSRF (Cross-Site Request Forgery)</h3>
+            
+            <div class="box">
+                <strong>Mecanismo:</strong> Tokens CSRF únicos por sesión<br>
+                <strong>Uso:</strong> Requeridos en formularios y AJAX<br>
+                <strong>Beneficio:</strong> Previene solicitudes maliciosas desde otros sitios
+            </div>
+            
+            <h3>3.3.2 XSS (Cross-Site Scripting)</h3>
+            
+            <p><strong>Protecciones Implementadas:</strong></p>
+            <ol>
+                <li><strong>Escapado de HTML:</strong> textContent en lugar de innerHTML</li>
+                <li><strong>Content Security Policy:</strong> Headers HTTP restrictivos</li>
+                <li><strong>Validación de Input:</strong> Caracteres especiales escapados</li>
+                <li><strong>Output Encoding:</strong> htmlspecialchars() en PHP</li>
+            </ol>
+            
+            <h3>3.3.3 SQL Injection</h3>
+            
+            <p><strong>Protección mediante Prepared Statements:</strong></p>
+            <pre>// En models/Usuario.php
+$stmt = $this->db->prepare("SELECT * FROM usuarios WHERE email = ?");
+$stmt->bind_param("s", $email);
+$stmt->execute();</pre>
+            
+            <div class="box">
+                <strong>Ventaja:</strong> Imposible inyectar código SQL, parámetros separados de consulta
+            </div>
+            
+            <h3>3.3.4 Validación y Sanitización</h3>
+            
+            <pre>// En SecurityService.php
+public static function sanitizar($data, $type = 'text') {
+    switch($type) {
+        case 'email':
+            return filter_var($data, FILTER_SANITIZE_EMAIL);
+        case 'number':
+            return intval($data);
+        default:
+            return htmlspecialchars($data, ENT_QUOTES);
+    }
+}</pre>
+            
+            <h2>3.4 Seguridad de Comunicación</h2>
+            
+            <h3>3.4.1 Headers HTTP de Seguridad</h3>
+            
+            <pre>header('X-Content-Type-Options: nosniff');
+header('X-Frame-Options: DENY');
+header('X-XSS-Protection: 1; mode=block');
+header('Referrer-Policy: strict-origin-when-cross-origin');</pre>
+            
+            <h2>3.5 Auditoría y Logging</h2>
+            
+            <p>Se registran todas las actividades importantes:</p>
+            <ul>
+                <li>Intentos de login (exitosos y fallidos)</li>
+                <li>Creación de tareas</li>
+                <li>Actualización de tareas</li>
+                <li>Eliminación de tareas</li>
+                <li>Logout</li>
+            </ul>
+            
+            <pre>// En AuthService.php
+$this->registrarActividad('LOGIN', 'usuarios', $usuario_id);
+$this->registrarActividad('TAREA_CREAR', 'tareas', $tarea_id);</pre>
+        </div>
+        
+        <!-- SECCIÓN 4 -->
+        <div class="seccion">
+            <h1>4️⃣ Web Services de Terceros</h1>
+            
+            <h2>4.1 OpenWeather API</h2>
+            
+            <h3>4.1.1 Descripción</h3>
+            <p>Servicio que proporciona información meteorológica en tiempo real de cualquier ubicación del mundo.</p>
+            
+            <h3>4.1.2 Endpoint Consumido</h3>
+            <pre>https://api.openweathermap.org/data/2.5/weather?q=Mexico%20City&appid=KEY&units=metric</pre>
+            
+            <h3>4.1.3 Parámetros</h3>
+            <ul>
+                <li><code>q</code>: Ciudad (Mexico City)</li>
+                <li><code>appid</code>: API key de OpenWeather</li>
+                <li><code>units</code>: Unidades (metric para Celsius)</li>
+            </ul>
+            
+            <h3>4.1.4 Respuesta JSON</h3>
+            <pre>{
+  "main": {
+    "temp": 25.5,
+    "humidity": 60,
+    "pressure": 1013
+  },
+  "wind": {
+    "speed": 3.2
+  },
+  "weather": [{
+    "main": "Clouds",
+    "description": "scattered clouds"
+  }]
+}</pre>
+            
+            <h3>4.1.5 Implementación en la Aplicación</h3>
+            
+            <p><strong>Archivo:</strong> src/services/ExternalAPIService.php</p>
+            
+            <p>La aplicación consume esta API y expone un endpoint propio:</p>
+            <pre>GET /api/external/clima-general</pre>
+            
+            <p><strong>Respuesta:</strong></p>
+            <pre>{
+  "success": true,
+  "data": {
+    "temperatura": 25.5,
+    "velocidad_viento": 3.2,
+    "descripcion": "Scattered clouds"
+  },
+  "message": "Clima obtenido"
+}</pre>
+            
+            <h3>4.1.6 Visualización en Dashboard</h3>
+            
+            <p>El widget de clima se muestra en la esquina superior derecha:</p>
+            <ul>
+                <li>🌡️ Temperatura en Celsius</li>
+                <li>💨 Velocidad del viento en km/h</li>
+                <li>Se actualiza al cargar la página</li>
+            </ul>
+            
+            <h2>4.2 Open-Meteo API (Fallback)</h2>
+            
+            <p>Servicio alternativo gratuito sin requerimiento de API key para datos meteorológicos.</p>
+            
+            <ul>
+                <li><strong>URL:</strong> https://api.open-meteo.com/v1/forecast</li>
+                <li><strong>Uso:</strong> Fallback si OpenWeather falla</li>
+                <li><strong>Ventaja:</strong> Gratuito, sin límite de peticiones</li>
+            </ul>
+        </div>
+        
+        <!-- SECCIÓN 5 -->
+        <div class="seccion">
+            <h1>5️⃣ Web Services Propios</h1>
+            
+            <h2>5.1 Arquitectura de API</h2>
+            
+            <table>
+                <tr>
+                    <th>Propiedad</th>
+                    <th>Valor</th>
+                </tr>
+                <tr>
+                    <td>Patrón</td>
+                    <td>REST con JSON</td>
+                </tr>
+                <tr>
+                    <td>Base URL</td>
+                    <td>/api</td>
+                </tr>
+                <tr>
+                    <td>Autenticación</td>
+                    <td>Sesiones PHP + Middleware</td>
+                </tr>
+                <tr>
+                    <td>Content-Type</td>
+                    <td>application/json</td>
+                </tr>
+                <tr>
+                    <td>Versionado</td>
+                    <td>No (v1.0)</td>
+                </tr>
+            </table>
+            
+            <h2>5.2 Endpoints de Autenticación</h2>
+            
+            <h3>5.2.1 POST /api/auth/login</h3>
+            
+            <div class="box">
+                <strong>Propósito:</strong> Autenticar usuario<br>
+                <strong>Autenticación:</strong> No requerida
+            </div>
+            
+            <p><strong>Parámetros:</strong></p>
+            <ul>
+                <li>email (string, requerido)</li>
+                <li>password (string, requerido)</li>
+            </ul>
+            
+            <p><strong>Respuesta Exitosa (200):</strong></p>
+            <pre>{
+  "success": true,
+  "data": {
+    "user_id": 3,
+    "name": "Usuario Demo",
+    "email": "demo@example.com",
+    "role": "user"
+  },
+  "message": "Login exitoso"
+}</pre>
+            
+            <h3>5.2.2 POST /api/auth/registro</h3>
+            
+            <p><strong>Propósito:</strong> Registrar nuevo usuario</p>
+            
+            <p><strong>Validaciones:</strong></p>
+            <ul>
+                <li>Email único en base de datos</li>
+                <li>Contraseña mínimo 8 caracteres</li>
+                <li>Las contraseñas deben coincidir</li>
+                <li>Email con formato válido</li>
+            </ul>
+            
+            <h3>5.2.3 POST /api/auth/logout</h3>
+            
+            <p><strong>Propósito:</strong> Cerrar sesión</p>
+            <p><strong>Autenticación:</strong> Requerida</p>
+            
+            <h3>5.2.4 GET /api/auth/me</h3>
+            
+            <p><strong>Propósito:</strong> Obtener datos del usuario autenticado</p>
+            <p><strong>Autenticación:</strong> Requerida</p>
+            
+            <h2>5.3 Endpoints de Tareas</h2>
+            
+            <h3>5.3.1 GET /api/tareas/obtener</h3>
+            
+            <p><strong>Propósito:</strong> Obtener todas las tareas del usuario</p>
+            <p><strong>Autenticación:</strong> Requerida</p>
+            
+            <p><strong>Respuesta:</strong></p>
+            <pre>{
+  "success": true,
+  "data": [
+    {
+      "id": 1,
+      "titulo": "Tarea de ejemplo",
+      "descripcion": "Descripción",
+      "estado": "pendiente",
+      "prioridad": "alta",
+      "fecha_vencimiento": "2025-12-09"
+    }
+  ],
+  "message": "Tareas obtenidas"
+}</pre>
+            
+            <h3>5.3.2 POST /api/tareas/crear</h3>
+            
+            <p><strong>Propósito:</strong> Crear nueva tarea</p>
+            <p><strong>Autenticación:</strong> Requerida</p>
+            
+            <p><strong>Parámetros:</strong></p>
+            <ul>
+                <li>titulo (string, requerido)</li>
+                <li>descripcion (string, opcional)</li>
+                <li>prioridad (string: alta, media, baja)</li>
+                <li>fecha_vencimiento (date, opcional)</li>
+                <li>csrf_token (string, requerido)</li>
+            </ul>
+            
+            <p><strong>Respuesta (201):</strong></p>
+            <pre>{
+  "success": true,
+  "data": {
+    "id": 5,
+    "titulo": "Nueva tarea",
+    "estado": "pendiente"
+  },
+  "message": "Tarea creada exitosamente"
+}</pre>
+            
+            <h3>5.3.3 POST /api/tareas/actualizar</h3>
+            
+            <p><strong>Propósito:</strong> Actualizar estado de tarea</p>
+            
+            <p><strong>Parámetros:</strong></p>
+            <ul>
+                <li>id (integer, requerido)</li>
+                <li>estado (string: pendiente, en_progreso, completada)</li>
+                <li>csrf_token (string, requerido)</li>
+            </ul>
+            
+            <h3>5.3.4 POST /api/tareas/eliminar</h3>
+            
+            <p><strong>Propósito:</strong> Eliminar una tarea</p>
+            
+            <h3>5.3.5 GET /api/tareas/estadisticas</h3>
+            
+            <p><strong>Propósito:</strong> Obtener estadísticas de tareas</p>
+            
+            <p><strong>Respuesta:</strong></p>
+            <pre>{
+  "success": true,
+  "data": [
+    {"estado": "pendiente", "cantidad": 2},
+    {"estado": "en_progreso", "cantidad": 1},
+    {"estado": "completada", "cantidad": 1}
+  ]
+}</pre>
+            
+            <h2>5.4 Estructura de Base de Datos</h2>
+            
+            <h3>Tabla: usuarios</h3>
+            <pre>CREATE TABLE usuarios (
+  id INT PRIMARY KEY AUTO_INCREMENT,
+  nombre VARCHAR(255) NOT NULL,
+  email VARCHAR(255) UNIQUE NOT NULL,
+  password VARCHAR(255) NOT NULL,
+  rol VARCHAR(50) DEFAULT 'user',
+  fecha_creacion TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+  fecha_ultimo_acceso TIMESTAMP
+);</pre>
+            
+            <h3>Tabla: tareas</h3>
+            <pre>CREATE TABLE tareas (
+  id INT PRIMARY KEY AUTO_INCREMENT,
+  usuario_id INT NOT NULL,
+  titulo VARCHAR(255) NOT NULL,
+  descripcion TEXT,
+  estado ENUM('pendiente', 'en_progreso', 'completada'),
+  prioridad ENUM('alta', 'media', 'baja'),
+  fecha_vencimiento DATE,
+  fecha_creacion TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+  FOREIGN KEY (usuario_id) REFERENCES usuarios(id)
+);</pre>
+        </div>
+        
+        <!-- SECCIÓN 6 -->
+        <div class="seccion">
+            <h1>6️⃣ Conclusiones</h1>
+            
+            <h2>6.1 Objetivos Logrados</h2>
+            
+            <ul class="checklist">
+                <li><strong>Autenticación Segura:</strong> Sistema de login/registro con bcrypt</li>
+                <li><strong>Web Services Propios:</strong> API REST completa con 6+ endpoints</li>
+                <li><strong>Web Services de Terceros:</strong> Integración con OpenWeather</li>
+                <li><strong>Seguridad Empresarial:</strong> Protección CSRF, XSS, SQL Injection</li>
+                <li><strong>Patrones de Diseño:</strong> MVC, Singleton, Active Record, Factory</li>
+                <li><strong>Metodología Ágil:</strong> Iteraciones, pruebas, refactoring</li>
+            </ul>
+            
+            <h2>6.2 Tecnologías Empleadas</h2>
+            
+            <ul>
+                <li><strong>Backend:</strong> PHP 8.1 con Apache 2.4</li>
+                <li><strong>BD:</strong> MySQL 8.0</li>
+                <li><strong>Frontend:</strong> HTML5, CSS3, JavaScript ES6+</li>
+                <li><strong>DevOps:</strong> Docker & Docker Compose</li>
+                <li><strong>Control de Versiones:</strong> Git & GitHub</li>
+            </ul>
+            
+            <h2>6.3 Repositorio</h2>
+            
+            <div class="box">
+                <strong>URL:</strong> <a href="https://github.com/Fernando7u710/SandovalIrachetaFernandoAzaelUnidad3" target="_blank">https://github.com/Fernando7u710/SandovalIrachetaFernandoAzaelUnidad3</a><br>
+                <strong>Estado:</strong> ✅ Funcional y en producción<br>
+                <strong>Acceso:</strong> Público
+            </div>
+            
+            <h2>6.4 Instrucciones de Instalación</h2>
+            
+            <p><strong>Con Docker (Recomendado):</strong></p>
+            <pre>git clone https://github.com/Fernando7u710/SandovalIrachetaFernandoAzaelUnidad3.git
+cd SandovalIrachetaFernandoAzaelUnidad3
+docker-compose up -d</pre>
+            
+            <p><strong>Acceso:</strong></p>
+            <ul>
+                <li>URL: http://localhost</li>
+                <li>Email: demo@example.com</li>
+                <li>Contraseña: demo123456</li>
+            </ul>
+        </div>
+        
+        <!-- PIE DE PÁGINA -->
+        <div class="footer">
+            <p>Fecha de Generación: 1 de Diciembre de 2025</p>
+            <p>Estudiante: Fernando Sandoval Iracheta</p>
+            <p>Institución: Escuela Superior de Informática</p>
+            <p>Materia: SABER HACER - Unidad 3</p>
+        </div>
+    </div>
+</body>
+</html>
